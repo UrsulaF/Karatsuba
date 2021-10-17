@@ -1,37 +1,29 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+import time 
+initial_time = time.time()
+import math
 
-# C extensions
-*.so
+def karat(x,y):
+    if x <= 100  or y<=100:
+        return x*y
+    else:
+        m = max(len(str(x)),len(str(y)))
+        m2 = m // 2
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+        a = x // 10**(m2)
+        b = x % 10**(m2)
+        c = y // 10**(m2)
+        d = y % 10**(m2)
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+        z0 = karat(b,d)
+        z1 = karat((a+b),(c+d))
+        z2 = karat(a,c)
+
+        return (z2 * 10**(2*m2)) + ((z1 - z2 - z0) * 10**(m2)) + (z0)
+x = 99999999999
+y = 99999999999
+res = karat(x,y)
+print(res)   
+print(" tempo e execução é de %s segundos " % (time.time() - initial_time))
 
 # Installer logs
 pip-log.txt
